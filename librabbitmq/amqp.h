@@ -48,7 +48,11 @@
 #define AMQP_END_DECLS
 #endif
 
-
+#if defined(_WIN32) && defined(__MINGW32__)
+#ifndef WINVER
+#define WINVER 0x0501
+#endif
+#endif
 
 /*
  * \internal
@@ -154,6 +158,10 @@ typedef __int64 ssize_t;
 #else
 typedef _W64 int ssize_t;
 #endif
+#endif
+
+#if defined(_WIN32) && defined(__MINGW32__)
+#include <sys/types.h>
 #endif
 
 /** \endcond */
